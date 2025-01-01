@@ -1,0 +1,18 @@
+//TC : O(1)
+//SC : O(1)
+
+class Solution {
+public:
+    bool checkOverlap(int radius, int xCenter, int yCenter, int x1, int y1, int x2, int y2) {
+        int xa=x1-xCenter,xb=x2-xCenter;
+        int ya=y1-yCenter,yb=y2-yCenter;
+        int minx=0,miny=0;
+        if(xa*xb>0){
+            minx=min(xa*xa,xb*xb);
+        }
+        if(ya*yb>0){
+            miny=min(ya*ya,yb*yb);
+        }
+        return minx+miny <= radius*radius;
+    }
+};
