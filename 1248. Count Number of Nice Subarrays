@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+    unordered_map<int,int>mp={{0,1}};
+    int sum=0,c=0;
+    for(auto i : nums){
+        sum += i%2;   //counting odd numbers
+        if(mp.find(sum-k) != mp.end()){
+            c += mp[sum-k];
+        }
+        mp[sum]++;
+    }
+    return c;    
+    }
+};
+
+
+
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        int prev=0,odd=0,c=0;
+        int i=0,j=0,n=nums.size();
+        while(j<n){
+            if(nums[j]%2!=0){
+                odd++;
+                prev=0;
+            }
+            while(odd==k){
+                prev++;
+                if(nums[i]%2!=0){
+                    odd--;
+                }
+                i++;
+            }
+            c += prev;
+            j++;
+        }   
+        return c;
+    }
+};
