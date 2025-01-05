@@ -1,0 +1,45 @@
+class Solution {
+  public:
+    void matchPairs(int n, char nuts[], char bolts[]) {
+        char order[]={'!','#','$','%','&','*','?','@','^'};
+        int pos=0;
+        for(int i=0;i<9;i++){
+            for(int j=0;j<n;j++){
+                if(order[i]==bolts[j]){
+                    swap(bolts[j],bolts[pos]);
+                    nuts[pos]=bolts[pos];
+                    pos++;
+                }
+            }
+        }
+    }
+};
+
+
+// User function template for C++
+class Solution {
+  public:
+
+    void matchPairs(int n, char nuts[], char bolts[]) {
+        char order[] = {'!','#','$','%','&','*','?','@','^'};
+        char resNuts[n],resBolts[n];
+        int ind=0;
+        for(int i=0;i<9;i++){
+            for(int j=0;j<n;j++){
+                if(nuts[j]==order[i]){
+                    resNuts[ind]=nuts[j];
+                }
+                if(bolts[j]==order[i]){
+                    resBolts[ind]=bolts[j];
+                }
+            }
+            if(ind<n && resNuts[ind]==order[i] && resBolts[ind]==order[i]){
+                ind++;
+            }
+        }
+        for(int i=0;i<n;i++){
+            nuts[i] = resNuts[i];
+            bolts[i] = resBolts[i];
+        }
+    }
+};
